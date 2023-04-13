@@ -2,8 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+// Import DB connection
+const connectDB = require("./db/connect");
+
 const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
+const { connect } = require("mongoose");
 
 /* Middleware */
 // Handle JSON data using Express middleware
@@ -28,6 +32,19 @@ app.use(errorMiddleware);
 const port = process.env.PORT || 3000;
 
 // Start Server
-app.listen(port, () => {
-  console.log(`Server is Listening on Port ${port}...`);
-});
+const start = async () => {
+  try {
+    // connectDB
+    // we're able to feed URLs from hidden files because we imported dotenv module
+    await connectDB(process.env.MONGO_URI);
+
+    // Kickstart server after successful DB connection
+    app.listen(port, () => {
+      console.log(`Server is Listening on Port ${port}...`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
