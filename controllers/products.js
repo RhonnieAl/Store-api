@@ -5,8 +5,6 @@ const getAllProducts = async (req, res) => {
 };
 
 const getAllProductsStatic = async (req, res) => {
-  // Handle errors using "express-async-errors" module
-  throw new Error("Testing Async Error");
   res.status(200).json({ msg: "Success! This is a Test Route" });
 };
 
