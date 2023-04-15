@@ -5,12 +5,15 @@ const app = express();
 // Import DB connection
 const connectDB = require("./db/connect");
 
+//Import router
+const productsRouter = require("./routes/products");
+
 const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
 const { connect } = require("mongoose");
 
 /* Middleware */
-// Handle JSON data using Express middleware
+// Handle all incoming and outgoing JSON data using this Express middleware
 app.use(express.json());
 
 //Routes
@@ -23,6 +26,9 @@ app.get("/", (req, res) => {
       "<h2>Hello this is the Home Page</h2><a href='/api/v1/products'>Click here to see all Products</a>"
     );
 });
+
+// Set up endpoint
+app.use("/api/v1/products", productsRouter);
 
 // Set up error handlers middlware
 app.use(notFoundMiddleware);
