@@ -16,3 +16,8 @@ Instead of writing our own Asyncwrapper functions with try-catch and next(), we
 throw the error with the help of `express-async-errors` to our custom error
 handler in `error-handler.js` and there do anything, for example show it on the
 console or return a message on the browser.
+
+### DB
+
+Mongo DataBase was auto populated with initial data using a Script in the file
+`populate.js`. Connection to DB was closed after successful run.
