@@ -2,130 +2,130 @@
   {
     "name": "accent chair",
     "price": 25,
-    "company": "marcos",
+    "company": "Isku",
     "rating": 4
   },
   {
     "name": "albany sectional",
     "price": 109,
-    "company": "liddy",
+    "company": "JYSK",
     "rating": 5
   },
   {
     "name": "albany table",
     "price": 309,
-    "company": "liddy",
+    "company": "JYSK",
     "rating": 4.9
   },
   {
     "name": "armchair",
     "price": 125,
-    "company": "marcos",
+    "company": "Isku",
     "rating": 4.8
   },
   {
     "name": "bar stool",
     "price": 40,
-    "company": "liddy",
+    "company": "JYSK",
     "rating": 4.6
   },
   {
     "name": "dining table",
     "price": 42,
-    "company": "ikea",
+    "company": "Ikea",
     "rating": 4.55
   },
   {
     "name": "emperor bed",
     "price": 23,
-    "company": "ikea"
+    "company": "Ikea"
   },
   {
     "name": "entertainment center",
     "price": 59,
     "featured": true,
-    "company": "caressa"
+    "company": "Masku"
   },
   {
     "name": "high-back bench",
     "price": 39,
     "featured": true,
-    "company": "ikea"
+    "company": "Ikea"
   },
 
   {
     "name": "leather sofa",
     "price": 99,
-    "company": "caressa"
+    "company": "Masku"
   },
   {
     "name": "modern bookshelf",
     "price": 31,
     "featured": true,
-    "company": "caressa"
+    "company": "Masku"
   },
   {
     "name": "modern poster",
     "price": 30,
-    "company": "liddy"
+    "company": "JYSK"
   },
   {
     "name": "shelf",
     "price": 30,
-    "company": "ikea"
+    "company": "Ikea"
   },
   {
     "name": "simple chair",
     "price": 109,
-    "company": "liddy"
+    "company": "JYSK"
   },
   {
     "name": "sofa set",
     "price": 129,
-    "company": "marcos"
+    "company": "Isku"
   },
   {
     "name": "suede armchair",
     "price": 15,
-    "company": "caressa"
+    "company": "Masku"
   },
   {
     "name": "utopia sofa",
     "price": 79,
     "featured": true,
-    "company": "liddy"
+    "company": "JYSK"
   },
   {
     "name": "vase table",
     "price": 120,
     "featured": true,
-    "company": "marcos"
+    "company": "Isku"
   },
   {
     "name": "wooden bed",
     "price": 25,
-    "company": "ikea"
+    "company": "Ikea"
   },
   {
     "name": "wooden desk",
     "price": 15,
-    "company": "ikea"
+    "company": "Ikea"
   },
   {
     "name": "wooden desk",
     "price": 40,
-    "company": "ikea"
+    "company": "Ikea"
   },
   {
     "name": "wooden table",
     "price": 23,
     "featured": true,
-    "company": "caressa"
+    "company": "Masku"
   },
   {
     "name": "a first wooden table",
     "price": 23,
     "featured": true,
-    "company": "caressa"
+    "company": "Masku"
   }
 ]
