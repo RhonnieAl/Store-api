@@ -12,16 +12,40 @@ tests.
 
 ![Postman Endpoint Tests](https://github.com/RhonnieAl/Store-api/blob/master/screenshots/Screenshot1.png)
 
-## Project Setup
+# Prerequisites
+
+Please make sure you have `Node.js` installed on your machine and `Git` version
+control system to run project locally.
+
+## Cloning the Repository
+
+To clone this repository to your local machine, ´cd´ to your desired directory.
+
+Then run the following git clone command. This will create a folder called
+´Store-api´ on your specified directory.
+
+```sh
+git clone https://github.com/RhonnieAl/Store-api
+```
+
+## Project Setup : Run locally
 
 Run `npm install` to install node dependencies
 
-Run `npm start` to kickstart server.
+Run `npm start` or `node app.js`to kickstart server.
 
-In order to run the project, setup .env and set MONGO_URI variable equal to DB
-connection string.
+In order to run the project, create a .env file, set your MONGO_URI with a
+correct connection string to your MongoDB.
+
+Populate the Database with the provided initial data by running :
+
+```js
+node populate.js
+```
 
 In order to avoid port collisions, port 3000 is used, feel free to change it.
+
+Great :) Happy testing!
 
 ## REST API Endpoints
 
