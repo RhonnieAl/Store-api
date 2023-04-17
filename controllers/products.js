@@ -9,7 +9,7 @@ const getAllProductsStatic = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   // Extract only the supported query params : ignore the rest (Mongoose V5)
-  const { featured, company, name, sort } = req.query;
+  const { featured, company, name, sort, fields } = req.query;
   const queryObject = {};
 
   if (featured) {
@@ -26,6 +26,8 @@ const getAllProducts = async (req, res) => {
   }
 
   result = Product.find(queryObject);
+
+  //Sort
   if (sort) {
     // input comes as one long coma separated string.
     // should be space separated acc to Mongoose docs
@@ -35,6 +37,22 @@ const getAllProducts = async (req, res) => {
     // Default sort if not passed
     result = result.sort("createdAt");
   }
+
+  // Select
+  if (fields) {
+    fieldList = fields.split(",").join(" ");
+    result = result.select(fieldList);
+  }
+  // Extract user-given page number or default to 1
+  const page = Number(req.query.page) || 1;
+  // Extract user-given num of items requested or default to 10
+  const limit = Number(req.query.limit) || 10;
+  // set number of documents in collection to be skipped
+  const skip = (page - 1) * limit;
+
+  // If skip is zero page num begins from page 1 and returns items by limit given
+  result = result.skip(skip).limit(limit);
+
   const products = await result;
 
   res.status(200).json({ numHits: products.length, products });
