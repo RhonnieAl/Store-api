@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res
     .status(200)
     .send(
-      "<h1>Welcome the Store-api app</h1><p>You have succesfully connected to the Backend</p><p>To fully Test, use Postman and point to following endpoint: /api/v1/products </p><a href='/api/v1/products'>Click here to see all Products</a>"
+      "<h1>Welcome to the Store-api app</h1><p>You have succesfully connected to the Backend</p><p>To fully Test, use Postman and point to following endpoint: /api/v1/products </p><a href='/api/v1/products'>Click here to see all Products JSON</a>"
     );
 });
 
