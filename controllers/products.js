@@ -9,7 +9,7 @@ const getAllProductsStatic = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   // Extract only the supported query params : ignore the rest (Mongoose V5)
-  const { featured, company, name, sort, fields } = req.query;
+  const { featured, company, name, sort, fields, numericFilters } = req.query;
   const queryObject = {};
 
   if (featured) {
@@ -25,7 +25,38 @@ const getAllProducts = async (req, res) => {
     queryObject.name = { $regex: name, $options: "i" };
   }
 
-  result = Product.find(queryObject);
+  if (numericFilters) {
+    // Object to map all user input operators to regex ones
+    const operatorMap = {
+      ">": "$gt",
+      ">=": "$gte",
+      "=": "$eq",
+      "<": "$lt",
+      "<=": "$lte",
+    };
+    // Find all occurences of user input operators
+    const regEx = /\b(<|>|>=|=|<|<=)\b/g;
+
+    // Replace all occurences in "numericFilters" with regex ones
+    // "filters" is string with swapped operators
+    let filters = numericFilters.replace(
+      regEx,
+      (match) => `-${operatorMap[match]}-`
+    );
+
+    const options = ["price", "rating"];
+    // Split up the numeric queries passed by the user
+    filters = filters.split(",").forEach((queryItem) => {
+      // Destructure and name
+      const [field, operator, value] = queryItem.split("-");
+      // Restricing DB fields this fuction applies to
+      if (options.includes(field)) {
+        queryObject[field] = { [operator]: Number(value) };
+      }
+    });
+  }
+
+  let result = Product.find(queryObject);
 
   //Sort
   if (sort) {

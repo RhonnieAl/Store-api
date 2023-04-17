@@ -14,7 +14,7 @@ tests.
 
 ## Project Setup
 
-Run ``npm install` to install node dependencies
+Run `npm install` to install node dependencies
 
 Run `npm start` to kickstart server.
 
@@ -44,6 +44,8 @@ rating, date, company, featured)
 `limit` - Determin how many products you want to retrieve
 
 `page` - Select the page number you wish to view
+
+`numericFilters` - Search and Filter catalogue by "Price" and "Rating"
 
 ### Error Handling
 
@@ -192,4 +194,47 @@ const skip = (page - 1) * limit;
 result = result.skip(skip).limit(limit);
 
 const products = await result;
+```
+
+### DB Search by Price and Rating Functionality
+
+This functionality allows the user to search and filter catalogue based on
+`price` or `rating` or both.
+
+According to
+[MongoDB docs](https://www.mongodb.com/docs/manual/reference/operator/query/),
+regex such as `gt` and `gte` are the only accepted comparison operators, instead
+of basic comparison operators (eg: <, >, =<, >=).
+
+```js
+if (numericFilters) {
+  // Object to map all user input operators to regex ones
+  const operatorMap = {
+    ">": "$gt",
+    ">=": "$gte",
+    "=": "$eq",
+    "<": "$lt",
+    "<=": "$lte",
+  };
+  // Find all occurences of user input operators
+  const regEx = /\b(<|>|>=|=|<|<=)\b/g;
+
+  // Replace all occurences in "numericFilters" with regex ones
+  // "filters" is string with swapped operators
+  let filters = numericFilters.replace(
+    regEx,
+    (match) => `-${operatorMap[match]}-`
+  );
+
+  const options = ["price", "rating"];
+  // Split up the numeric queries passed by the user
+  filters = filters.split(",").forEach((queryItem) => {
+    // Destructure and name
+    const [field, operator, value] = queryItem.split("-");
+    // Restricing DB fields this fuction applies to
+    if (options.includes(field)) {
+      queryObject[field] = { [operator]: Number(value) };
+    }
+  });
+}
 ```
