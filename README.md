@@ -1,41 +1,64 @@
 ## Store API
 
-This is a store api NodeJS appliaction that provides database search options for
-web-store users based on product name, product category, pricing, etc.
+This is a NodeJS web-store api appliaction that provides a variety of database
+Search, Sort and Filter options for web-store users.
 
-This setup will allow the Frontend to only send HTTP calls for the data.
+The setup used here allows the Frontend to only send HTTP calls to request
+validated data from the backend.
 
-Project is Setup to practice database query functionality.
+Postman is used to test the endpoints, no frontend is available for this
+project.
 
-Postman is used to test the endpoints instead of building a frontend for the
-tests.
+## Try it now online
+
+To try the backend application, please visit the following URL to see all
+products in the database:
+
+https://store-api-rxgj.onrender.com
+
+It is recommended to install a JSON Web Formatter such as
+[json-Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en)
+to see the json data correctly.
+
+NOTE:
+
+To fully test the built features and utilise this backend-app, it is recommneded
+to use [Postman](https://www.postman.com/product/what-is-postman/). Point to the
+following REST API endpoint:
+
+- https://store-api-rxgj.onrender.com/api/v1/products
+
+See 'Valid Query Params' section below.
+
+Kindly allow for 30 sec for database Rehydration and loading.
 
 ![Postman Endpoint Tests](https://github.com/RhonnieAl/Store-api/blob/master/screenshots/Screenshot1.png)
 
-# Prerequisites
+# Running Locally: Prerequisites
 
 Please make sure you have `Node.js` installed on your machine and `Git` version
 control system to run project locally.
 
 ## Cloning the Repository
 
-To clone this repository to your local machine, ´cd´ to your desired directory.
+To clone this repository to your local machine, `cd` to your desired directory
+(e.g `cd Desktop`).
 
 Then run the following git clone command. This will create a folder called
-´Store-api´ on your specified directory.
+`Store-api` on your specified directory.
 
 ```sh
 git clone https://github.com/RhonnieAl/Store-api
 ```
 
-## Project Setup : Run locally
+## Project Setup
 
 Run `npm install` to install node dependencies
 
 Run `npm start` or `node app.js`to kickstart server.
 
-In order to run the project, create a .env file, set your MONGO_URI with a
-correct connection string to your MongoDB.
+In order to run the project, create a .env file, set your "MONGO_URI" with a
+correct "connection string" to your MongoDB.
 
 Populate the Database with the provided initial data by running :
 
@@ -69,7 +92,7 @@ rating, date, company, featured)
 
 `page` - Select the page number you wish to view
 
-`numericFilters` - Search and Filter catalogue by "Price" and "Rating"
+`numericFilters` - Search and Filter catalogue by "price" and "rating"
 
 ### Error Handling
 
@@ -188,7 +211,7 @@ if (fields) {
 const products = await result;
 ```
 
-### DB Pageination Functionality
+### DB Pagination Functionality
 
 This functionality allows the user to request a specified certian page if the
 number of items returned are numerous.
@@ -262,3 +285,5 @@ if (numericFilters) {
   });
 }
 ```
+
+Hobby Project maintined by [Rhonnie Allan](https://github.com/RhonnieAl)
