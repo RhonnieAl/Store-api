@@ -45,6 +45,36 @@ name, MongoDB
 query operators were used.
 
 ```js
-  // regex: case incensitive and allows partial name input
+// regex: case incensitive and allows partial name input
 { $regex: name, $options: "i" }
+{ $regex: company, $options: "i" }
+```
+
+### DB Sort Functionality
+
+By default MongoDB documents in a collection are sorted by date created.
+
+To apply the `.sort()` functionality we chain the method as shown on
+[Mongoose Docs](<https://mongoosejs.com/docs/api/query.html#Query.prototype.sort()>).
+
+As a rule we apply `.sort()` method on an Object query and not the resolved
+result of a query i.e
+
+- Using a method on the Model with `await` returns the resolved result of a
+  query.
+
+- Using a method on the Model without `await` returns an object (a Query
+  object), not the result of a query.
+
+```js
+const { item, sort } = req.query;
+result = Product.find(item);
+if (sort) {
+  sortList = sort.split(",").join(" ");
+  result = result.sort(sortList);
+} else {
+  result = result.sort("createdAt");
+}
+const products = await result;
+res.status(200).json({ products });
 ```

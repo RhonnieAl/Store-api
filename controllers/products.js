@@ -9,7 +9,7 @@ const getAllProductsStatic = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   // Extract only the supported query params : ignore the rest (Mongoose V5)
-  const { featured, company, name } = req.query;
+  const { featured, company, name, sort } = req.query;
   const queryObject = {};
 
   if (featured) {
@@ -24,7 +24,19 @@ const getAllProducts = async (req, res) => {
     // regex: case incensitive and allows partial name input
     queryObject.name = { $regex: name, $options: "i" };
   }
-  const products = await Product.find(queryObject);
+
+  result = Product.find(queryObject);
+  if (sort) {
+    // input comes as one long coma separated string.
+    // should be space separated acc to Mongoose docs
+    sortList = sort.split(",").join(" ");
+    result = result.sort(sortList);
+  } else {
+    // Default sort if not passed
+    result = result.sort("createdAt");
+  }
+  const products = await result;
+
   res.status(200).json({ numHits: products.length, products });
 };
 
