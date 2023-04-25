@@ -14,7 +14,7 @@ project.
 To try the backend application, please visit the following URL to see all
 products in the database:
 
-- https://store-api-rxgj.onrender.com
+- https://webstore-api.azurewebsites.net
 
 It is recommended to install a JSON Web Formatter such as
 [json-Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en)
