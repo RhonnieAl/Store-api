@@ -26,7 +26,7 @@ To fully test the built features and utilise this backend-app, it is recommneded
 to use [Postman](https://www.postman.com/product/what-is-postman/). Point to the
 following REST API endpoint:
 
-- https://store-api-rxgj.onrender.com/api/v1/products
+- https://webstore-api.azurewebsites.net/api/v1/products
 
 See 'Valid Query Params' section below.
 
